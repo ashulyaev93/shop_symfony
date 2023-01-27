@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}My shop{% endblock %}
+
+{% block body %}
+
+    <form name="new_order" method="post" action="/new_order">
+        <select name="product">
+            <option value="0">Продукт не выбран</option>
+            {% for item in items %}
+                <option value="{{ item.id }}" {{ selected_prod == item.id ? 'selected' : '' }}>
+                    {{ item.name }}
+                </option>
+            {% endfor %}
+        </select>
+
+        <p><b>Ваш tax номер:</b><br>
+            <input type="tax_number" name="value" minlength="11" maxlength="14">
+            <input type="submit" name="SubmitButton" value="Submit">
+        </p>
+    </form>
+
+{% endblock %}
